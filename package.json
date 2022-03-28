@@ -9,7 +9,8 @@
     "browserify": "^17.0.0"
   },
   "scripts": {
-    "bundle": "browserify public/js/menu.js public/js/index.js public/js/feedback.js public/js/tracking.js -o public/bundle.js"
+    "bundle": "browserify public/js/menu.js public/js/index.js public/js/feedback.js public/js/tracking.js -o public/bundle.js",
+    "preview": "cross-env NODE_ENV=production yarn run build && netlify deploy --dir build"
   },
   "dependencies": {
     "@cubejs-client/core": "^0.29.33",

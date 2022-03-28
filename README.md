@@ -13,3 +13,4 @@ How to integrate it into existing example demo:
     - `[preifx_]CUBE_EXAMPLES_META_API_URL=https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1`
 4. Install required dependicies
 5. Copy `"bundle"` package.json script and run it to build client-side js
+6. Copy `"preview"` package.json script and run it to build preview link on Netlify
