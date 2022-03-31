@@ -10,10 +10,13 @@ const minDesktopWidth = getComputedStyle(document.documentElement)
   .getPropertyValue("--breakpoint-desktop-xs")
   .replace("px", "");
 
-// credentials read from env at index.html
-const cubejsApi = cubejs(CUBE_EXAMPLES_META_TOKEN, {
-  apiUrl: CUBE_EXAMPLES_META_API_URL,
-});
+const cubejsApi = cubejs(
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg0ODc1MzF9.3uTCoC-XGy1MxYoe3Wzbokx6gL0fOpwJG0R_quSDGvg",
+  {
+    apiUrl:
+      "https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1",
+  }
+);
 
 const createQuery = () => ({
   dimensions: ["ExamplesMeta.name", "ExamplesMeta.url"],
