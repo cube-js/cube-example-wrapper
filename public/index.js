@@ -1,55 +1,20 @@
-const documentBody = document.querySelector("body");
-const root = document.querySelector("#root");
+import CubeExampleWrapper from "./CubeExampleWrapper";
+export default CubeExampleWrapper;
 
-const parseHTML = (html) => {
-  const parser = new DOMParser();
-  return parser.parseFromString(html, "text/html");
-};
-
-const fetchComponent = (src, render) =>
-  fetch(src)
-    .then((res) => res.text())
-    .then((html) => {
-      const htmlRaw = parseHTML(html);
-      render(htmlRaw);
-    })
-    .catch((err) => console.log(err));
-
-const fetchHeader = () =>
-  fetchComponent("./components/header.html", (htmlRaw) => {
-    documentBody.insertBefore(htmlRaw.body.firstChild, root);
-  });
-
-const fetchDescription = ({ title, text, tutorial, sourceCodeSrc }) =>
-  fetchComponent("./components/description.html", (htmlRaw) => {
-    documentBody.insertBefore(htmlRaw.body.firstChild, root);
-  }).then(() => {
-    document.querySelector(".Description__title").innerHTML = title;
-    document.querySelector(".Description__text").innerHTML = text;
-    document.querySelector(".Description__tutorial").innerHTML = tutorial.label;
-    document.querySelector(".Description__tutorial").href = tutorial.src;
-    document.querySelector(".Description__sourceCode").href = sourceCodeSrc;
-  });
-
-const fetchFooter = () =>
-  fetchComponent("./components/footer.html", (htmlRaw) => {
-    documentBody.insertBefore(htmlRaw.body.firstChild, root.nextSibling);
-  });
-
-const injectScript = (src, t) => {
+const injectScript = (src, t, c) => {
   const s = document.createElement("script");
   s.type = "text/javascript";
-  s.src = src;
+  src ? (s.src = src) : null;
+  c ? (s.text = c) : null;
   document.querySelector(t).appendChild(s);
 };
+// const injectBundle = () => {
+//   injectScript("bundle.js", "body");
+// };
 
-const injectBundle = () => {
-  injectScript("bundle.js", "body");
-};
-
-const injectBrowserLog = () => {
-  injectScript("./js/monitoring.js", "head");
-};
+// const injectBrowserLog = () => {
+//   injectScript("./js/monitoring.js", "head");
+// };
 
 (function (d, s, id) {
   let js,
@@ -60,18 +25,20 @@ const injectBrowserLog = () => {
   js = d.createElement("script");
   js.id = id;
   js.onload = function () {
-    injectBrowserLog();
+    var c = `
+    window.DD_LOGS &&
+      DD_LOGS.init({
+        clientToken: "pubedf0a35240b3fb633f1c005b86c571df",
+        site: "datadoghq.com",
+        forwardErrorsToLogs: true,
+        sampleRate: 100,
+        service: "cube-examples",
+      });
+    `;
+    injectScript(null, "head", c);
   };
   js.src = "https://www.datadoghq-browser-agent.com/datadog-logs-v4.js";
   fjs.appendChild(js);
 })(document, "head", "datadog-logs-v4");
 
-const renderWrapper = async (description) => {
-  await fetchHeader();
-  await fetchDescription(description);
-  await fetchFooter();
-
-  injectBundle();
-};
-
-export default renderWrapper;
+export { injectScript };
