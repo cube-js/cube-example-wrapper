@@ -27621,327 +27621,342 @@ function v4(options, buf, offset) {
 module.exports = v4;
 
 },{"./lib/bytesToUuid":591,"./lib/rng":592}],594:[function(require,module,exports){
-const cubeTracking = require('cubedev-tracking');
+const cubeTracking = require("cubedev-tracking");
 const { event: cubeTrackingEvent } = cubeTracking;
 
-// controls
-const feedbackLikeBtn = document.querySelector('#feedback-like');
-const feedbackDislikeBtn = document.querySelector('#feedback-dislike');
-const feedbackMessageField = document.querySelector('#feedback-message');
-const feedbackMessageSendBtn = document.querySelector('#feedback-message-send');
-const feedbackMessageCancelBtn = document.querySelector('#feedback-message-cancel');
+window.addEventListener("DOMContentLoaded", () => {
+  // controls
+  const feedbackLikeBtn = document.querySelector("#feedback-like");
+  const feedbackDislikeBtn = document.querySelector("#feedback-dislike");
+  const feedbackMessageField = document.querySelector("#feedback-message");
+  const feedbackMessageSendBtn = document.querySelector(
+    "#feedback-message-send"
+  );
+  const feedbackMessageCancelBtn = document.querySelector(
+    "#feedback-message-cancel"
+  );
 
-// UI
-const feedbackBlock = document.querySelector('.Feedback__block');
-const feedbackMessageForm = document.querySelector('.Feedback__message-form');
-const thanksBlock = document.querySelector('.Feedback__thanks');
+  // UI
+  const feedbackBlock = document.querySelector(".Feedback__block");
+  const feedbackMessageForm = document.querySelector(".Feedback__message-form");
+  const thanksBlock = document.querySelector(".Feedback__thanks");
 
-const FEEDBACK_LIKE = 'like';
-const FEEDBACK_DISLIKE = 'dislike';
-const feedbackMessagePlaceholder = {
-  [FEEDBACK_LIKE]: 'Let us know what you like and how we can improve this page',
-  [FEEDBACK_DISLIKE]: 'Let us know how we can improve this page',
-};
+  const FEEDBACK_LIKE = "like";
+  const FEEDBACK_DISLIKE = "dislike";
+  const feedbackMessagePlaceholder = {
+    [FEEDBACK_LIKE]:
+      "Let us know what you like and how we can improve this page",
+    [FEEDBACK_DISLIKE]: "Let us know how we can improve this page",
+  };
 
-let feedback = ''; // selected feedback status: like or dislike
+  let feedback = ""; // selected feedback status: like or dislike
 
-const submitFeedbackLike = (status) => {
-  // submit event
-  feedback = status;
-  cubeTrackingEvent('page_feedback_like', { feedback });
+  const submitFeedbackLike = (status) => {
+    // submit event
+    feedback = status;
+    cubeTrackingEvent("page_feedback_like", { feedback });
 
-  showFeedbackMessageForm();
-};
+    showFeedbackMessageForm();
+  };
 
-feedbackLikeBtn.addEventListener('click', (e) => {
-  if (feedback) return;
+  feedbackLikeBtn.addEventListener("click", (e) => {
+    if (feedback) return;
 
-  submitFeedbackLike(FEEDBACK_LIKE);
+    submitFeedbackLike(FEEDBACK_LIKE);
 
-  feedbackLikeBtn.setAttribute('active', true);
-  feedbackDislikeBtn.disabled = true;
+    feedbackLikeBtn.setAttribute("active", true);
+    feedbackDislikeBtn.disabled = true;
+  });
+
+  feedbackDislikeBtn.addEventListener("click", () => {
+    if (feedback) return;
+
+    submitFeedbackLike(FEEDBACK_DISLIKE);
+
+    feedbackDislikeBtn.setAttribute("active", true);
+    feedbackLikeBtn.disabled = true;
+  });
+
+  feedbackMessageSendBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // send cube tracking event
+    const comment = feedbackMessageField.value;
+    cubeTrackingEvent("page_feedback_comment", { feedback, comment });
+
+    showThanks();
+  });
+
+  feedbackMessageCancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    showThanks();
+  });
+
+  function showThanks() {
+    feedbackBlock.classList.add("d-none");
+    feedbackMessageForm.classList.add("d-none");
+    thanksBlock.classList.remove("d-none");
+  }
+
+  function showFeedbackMessageForm() {
+    // update message form UI
+    feedbackMessageField.value = "";
+    feedbackMessageField.placeholder = feedbackMessagePlaceholder[feedback];
+    feedbackMessageForm.classList.remove("d-none");
+  }
 });
-
-feedbackDislikeBtn.addEventListener('click', () => {
-  if (feedback) return;
-
-  submitFeedbackLike(FEEDBACK_DISLIKE);
-
-  feedbackDislikeBtn.setAttribute('active', true);
-  feedbackLikeBtn.disabled = true;
-});
-
-feedbackMessageSendBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  // send cube tracking event
-  const comment = feedbackMessageField.value;
-  cubeTrackingEvent('page_feedback_comment', { feedback, comment });
-
-  showThanks();
-});
-
-feedbackMessageCancelBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  showThanks();
-});
-
-function showThanks() {
-  feedbackBlock.classList.add('d-none');
-  feedbackMessageForm.classList.add('d-none');
-  thanksBlock.classList.remove('d-none');
-}
-
-function showFeedbackMessageForm() {
-  // update message form UI
-  feedbackMessageField.value = '';
-  feedbackMessageField.placeholder = feedbackMessagePlaceholder[feedback];
-  feedbackMessageForm.classList.remove('d-none');
-}
 
 },{"cubedev-tracking":253}],595:[function(require,module,exports){
-const navToggleBtn = document.querySelector("#toggleNavVisibilityButton");
-const header = document.querySelector("#header");
-const headerNavigation = document.querySelector("#headerNavigation");
-const headerOverlay = document.querySelector("#headerOverlay")
-const minDesktopWidth = 1180;
+window.addEventListener("DOMContentLoaded", () => {
+  const navToggleBtn = document.querySelector("#toggleNavVisibilityButton");
+  const header = document.querySelector("#header");
+  const headerNavigation = document.querySelector("#headerNavigation");
+  const headerOverlay = document.querySelector("#headerOverlay");
+  const minDesktopWidth = 1180;
 
-const toPX = (n) => (CSS && CSS.px ? CSS.px(n) : n + "px");
+  const toPX = (n) => (CSS && CSS.px ? CSS.px(n) : n + "px");
 
-// because additional height can only decrease
-let prevAdditionalScrollHeight;
+  // because additional height can only decrease
+  let prevAdditionalScrollHeight;
 
-const scrollListener = (e) => {
-  const { scrollY } = window;
-  if (prevAdditionalScrollHeight > scrollY) {
+  const scrollListener = (e) => {
+    const { scrollY } = window;
+    if (prevAdditionalScrollHeight > scrollY) {
+      document.body.style.setProperty(
+        "--additional_scroll_height",
+        toPX(scrollY)
+      );
+      prevAdditionalScrollHeight = scrollY;
+    }
+    if (scrollY === 0) {
+      window.removeEventListener("scroll", scrollListener);
+      document.body.style.removeProperty("--additional_scroll_height");
+    }
+  };
+
+  const lockScroll = () => {
+    const { scrollY } = window;
+    prevAdditionalScrollHeight = scrollY;
     document.body.style.setProperty(
       "--additional_scroll_height",
       toPX(scrollY)
     );
-    prevAdditionalScrollHeight = scrollY;
-  }
-  if (scrollY === 0) {
+    document.documentElement.classList.add("lock_root");
+    document.body.classList.add("lock_body");
+    document.documentElement.addEventListener("scroll", scrollListener);
+    window.addEventListener("scroll", scrollListener);
+  };
+
+  const unLockScroll = () => {
+    document.body.classList.remove("lock_body");
+    document.documentElement.classList.remove("lock_root");
     window.removeEventListener("scroll", scrollListener);
     document.body.style.removeProperty("--additional_scroll_height");
-  }
-};
+  };
 
-const lockScroll = () => {
-  const { scrollY } = window;
-  prevAdditionalScrollHeight = scrollY;
-  document.body.style.setProperty("--additional_scroll_height", toPX(scrollY));
-  document.documentElement.classList.add("lock_root");
-  document.body.classList.add("lock_body");
-  document.documentElement.addEventListener("scroll", scrollListener);
-  window.addEventListener("scroll", scrollListener);
-};
+  const toggleHeaderNavigation = () => {
+    if (headerNavigation.classList.contains("Header__navigation--open")) {
+      // set display:none to navigation after transition end
+      header.classList.remove("Header--open");
 
-const unLockScroll = () => {
-  document.body.classList.remove("lock_body");
-  document.documentElement.classList.remove("lock_root");
-  window.removeEventListener("scroll", scrollListener);
-  document.body.style.removeProperty("--additional_scroll_height");
-};
+      setTimeout(() => {
+        headerNavigation.classList.remove("Header__navigation--open");
+        // remove class to prevent overlay blink
+        header.classList.remove("Header--hasOpened");
+      }, 500);
+    } else {
+      // set display:flex to navigation before transition start
+      headerNavigation.classList.add("Header__navigation--open");
 
-const toggleHeaderNavigation = () => {
-  if (headerNavigation.classList.contains("Header__navigation--open")) {
-    // set display:none to navigation after transition end
-    header.classList.remove("Header--open");
-
-    setTimeout(() => {
-      headerNavigation.classList.remove("Header__navigation--open");
-      // remove class to prevent overlay blink
-      header.classList.remove("Header--hasOpened");
-    }, 500);
-  } else {
-    // set display:flex to navigation before transition start
-    headerNavigation.classList.add("Header__navigation--open");
-
-    setTimeout(() => {
-      header.classList.add("Header--open");
-      header.classList.add("Header--hasOpened");
-    }, 100);
-  }
-};
-
-const hideNav = () => {
-  unLockScroll();
-  toggleHeaderNavigation();
-
-  navToggleBtn.setAttribute("aria-expanded", "false");
-  navToggleBtn.setAttribute("aria-label", "Open menu");
-};
-
-const showNav = () => {
-  lockScroll();
-  toggleHeaderNavigation();
-
-  navToggleBtn.setAttribute("aria-expanded", true);
-  navToggleBtn.setAttribute("aria-label", "Close menu");
-};
-
-navToggleBtn.addEventListener("click", (e) => {
-  if (header.classList.contains("Header--open")) {
-    hideNav();
-  } else {
-    showNav();
-  }
-});
-
-headerOverlay.addEventListener("click", ()=>{
-  hideNav()
-})
-
-// update in case of changing nav structure
-const headerNavigationLastChild = document.querySelector(
-  "#headerNavigation > :last-child > :last-child"
-);
-headerNavigationLastChild.addEventListener("blur", () => {
-  hideNav();
-});
-
-// dropdown menu functionality
-const dropdown = document.querySelector("#menu");
-const dropdownMenuBtn = document.querySelector("#menu-button");
-const dropdownMenuList = document.querySelector("#menu-list");
-dropdownMenuBtn.addEventListener("click", function (e) {
-  dropdownMenuList.scrollTop = 0;
-  if (this.getAttribute("aria-expanded") === "true") {
-    this.setAttribute("aria-expanded", false);
-    dropdown.removeAttribute("open");
-  } else {
-    this.setAttribute("aria-expanded", true);
-    dropdown.setAttribute("open", true);
-  }
-});
-
-// close dropdown when click outside
-window.addEventListener("click", (e) => {
-  if (!dropdownMenuBtn.contains(e.target)) {
-    dropdownMenuBtn.setAttribute("aria-expanded", false);
-    dropdown.removeAttribute("open");
-  }
-});
-
-window.addEventListener("resize", function () {
-  if (this.innerWidth >= minDesktopWidth) {
-    // hide nav on window resize properly
-    unLockScroll();
-    header.classList.remove("Header--open");
-    header.classList.remove("Header--hide");
-    dropdownMenuBtn.setAttribute("aria-expanded", false);
-    navToggleBtn.setAttribute("aria-expanded", false);
-    navToggleBtn.setAttribute("aria-label", "Open menu");
-
-    // fix menu max-height
-    // if there is more then 8 menu items
-    // set such a height so that the user understands
-    // that it is possible to scroll down
-    if (dropdownMenuList.childNodes.length > 7) {
-      dropdownMenuList.classList.add("overflow");
+      setTimeout(() => {
+        header.classList.add("Header--open");
+        header.classList.add("Header--hasOpened");
+      }, 100);
     }
-  } else {
-    dropdownMenuList.classList.remove("overflow");
-  }
+  };
+
+  const hideNav = () => {
+    unLockScroll();
+    toggleHeaderNavigation();
+
+    navToggleBtn.setAttribute("aria-expanded", "false");
+    navToggleBtn.setAttribute("aria-label", "Open menu");
+  };
+
+  const showNav = () => {
+    lockScroll();
+    toggleHeaderNavigation();
+
+    navToggleBtn.setAttribute("aria-expanded", true);
+    navToggleBtn.setAttribute("aria-label", "Close menu");
+  };
+
+  navToggleBtn.addEventListener("click", (e) => {
+    if (header.classList.contains("Header--open")) {
+      hideNav();
+    } else {
+      showNav();
+    }
+  });
+
+  headerOverlay.addEventListener("click", () => {
+    hideNav();
+  });
+
+  // update in case of changing nav structure
+  const headerNavigationLastChild = document.querySelector(
+    "#headerNavigation > :last-child > :last-child"
+  );
+  headerNavigationLastChild.addEventListener("blur", () => {
+    hideNav();
+  });
+
+  // dropdown menu functionality
+  const dropdown = document.querySelector("#menu");
+  const dropdownMenuBtn = document.querySelector("#menu-button");
+  const dropdownMenuList = document.querySelector("#menu-list");
+  dropdownMenuBtn.addEventListener("click", function (e) {
+    dropdownMenuList.scrollTop = 0;
+    if (this.getAttribute("aria-expanded") === "true") {
+      this.setAttribute("aria-expanded", false);
+      dropdown.removeAttribute("open");
+    } else {
+      this.setAttribute("aria-expanded", true);
+      dropdown.setAttribute("open", true);
+    }
+  });
+
+  // close dropdown when click outside
+  window.addEventListener("click", (e) => {
+    if (!dropdownMenuBtn.contains(e.target)) {
+      dropdownMenuBtn.setAttribute("aria-expanded", false);
+      dropdown.removeAttribute("open");
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (this.innerWidth >= minDesktopWidth) {
+      // hide nav on window resize properly
+      unLockScroll();
+      header.classList.remove("Header--open");
+      header.classList.remove("Header--hide");
+      dropdownMenuBtn.setAttribute("aria-expanded", false);
+      navToggleBtn.setAttribute("aria-expanded", false);
+      navToggleBtn.setAttribute("aria-label", "Open menu");
+
+      // fix menu max-height
+      // if there is more then 8 menu items
+      // set such a height so that the user understands
+      // that it is possible to scroll down
+      if (dropdownMenuList.childNodes.length > 7) {
+        dropdownMenuList.classList.add("overflow");
+      }
+    } else {
+      dropdownMenuList.classList.remove("overflow");
+    }
+  });
 });
+
 },{}],596:[function(require,module,exports){
 const cubejs = require("@cubejs-client/core").default;
 
-// DOM
-const menuList = document.querySelector("#menu-list");
-const menuCurrent = document.querySelector("#menu-button-text");
-const menuButton = document.querySelector("#menu-button");
+window.addEventListener("DOMContentLoaded", () => {
+  // DOM
+  const menuList = document.querySelector("#menu-list");
+  const menuCurrent = document.querySelector("#menu-button-text");
+  const menuButton = document.querySelector("#menu-button");
 
-// CSS
-const minDesktopWidth = getComputedStyle(document.documentElement)
-  .getPropertyValue("--breakpoint-desktop-xs")
-  .replace("px", "");
+  // CSS
+  const minDesktopWidth = getComputedStyle(document.documentElement)
+    .getPropertyValue("--breakpoint-desktop-xs")
+    .replace("px", "");
 
-const cubejsApi = cubejs(
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg0ODc1MzF9.3uTCoC-XGy1MxYoe3Wzbokx6gL0fOpwJG0R_quSDGvg",
-  {
-    apiUrl:
-      "https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1",
-  }
-);
+  const cubejsApi = cubejs(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg0ODc1MzF9.3uTCoC-XGy1MxYoe3Wzbokx6gL0fOpwJG0R_quSDGvg",
+    {
+      apiUrl:
+        "https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1",
+    }
+  );
 
-const createQuery = () => ({
-  dimensions: ["ExamplesMeta.name", "ExamplesMeta.url"],
-  timeDimensions: [],
-  order: {
-    "ExamplesMeta.name": "asc",
-  },
-  filters: [],
-});
-
-const mapDataFormat = (data) =>
-  data.map((item) => ({
-    name: item["ExamplesMeta.name"],
-    url: item["ExamplesMeta.url"],
-  }));
-
-function fetchData() {
-  return cubejsApi
-    .load(createQuery())
-    .then((res) => res.rawData())
-    .then((data) => mapDataFormat(data))
-    .then((formattedData) => populateExamplesNav(formattedData));
-}
-
-fetchData();
-
-const populateExamplesNav = (data) => {
-  // find current nav item index
-  const currentNavItemIndex = data
-    .map((item) => item.url)
-    .indexOf(window.location.href);
-  if (currentNavItemIndex === -1) {
-    // if there is no current item in list
-    // set plug as current item name
-    // for local dev and preview purposes
-    menuCurrent.innerHTML = "Check other examples";
-  } else {
-    // remove current nav item from data
-    const currentNavItem = data.splice(currentNavItemIndex, 1)[0];
-    // set current item name as menu button text
-    menuCurrent.innerHTML = currentNavItem.name;
-  }
-
-  // generate nav options from data items
-  const navItems = data
-    .map(
-      (item) =>
-        `<li class="Dropdown__listItem"><a class="Dropdown__link Header__link" href="${item.url}">${item.name}</a></li>`
-    )
-    .join("");
-
-  // remove loader
-  menuButton.classList.toggle("load");
-  // set options to menu select
-  menuList.innerHTML = navItems;
-
-  // apply dropdown accessibility only when dropdown-list-items are rendered
-  applyDropdownAccessibility();
-
-  // if there is more then 8 menu items
-  // set such a height so that the user understands
-  // that it is possible to scroll down
-  if (data.length > 7 && window.innerWidth >= minDesktopWidth) {
-    // menuList.style.maxHeight = menuOverflowMaxHeight
-    menuList.classList.add("overflow");
-  }
-};
-
-// dropdown menu accessibilty
-function applyDropdownAccessibility() {
-  const dropdownLinks = document.querySelectorAll(".Dropdown__link");
-  const lastDropdownLinkItem = dropdownLinks.length - 1;
-
-  dropdownLinks[lastDropdownLinkItem].addEventListener("blur", function () {
-    menuButton.setAttribute("aria-expanded", false);
+  const createQuery = () => ({
+    dimensions: ["ExamplesMeta.name", "ExamplesMeta.url"],
+    timeDimensions: [],
+    order: {
+      "ExamplesMeta.name": "asc",
+    },
+    filters: [],
   });
-}
+
+  const mapDataFormat = (data) =>
+    data.map((item) => ({
+      name: item["ExamplesMeta.name"],
+      url: item["ExamplesMeta.url"],
+    }));
+
+  function fetchData() {
+    return cubejsApi
+      .load(createQuery())
+      .then((res) => res.rawData())
+      .then((data) => mapDataFormat(data))
+      .then((formattedData) => populateExamplesNav(formattedData));
+  }
+
+  fetchData();
+
+  const populateExamplesNav = (data) => {
+    // find current nav item index
+    const currentNavItemIndex = data
+      .map((item) => item.url)
+      .indexOf(window.location.href);
+    if (currentNavItemIndex === -1) {
+      // if there is no current item in list
+      // set plug as current item name
+      // for local dev and preview purposes
+      menuCurrent.innerHTML = "Check other examples";
+    } else {
+      // remove current nav item from data
+      const currentNavItem = data.splice(currentNavItemIndex, 1)[0];
+      // set current item name as menu button text
+      menuCurrent.innerHTML = currentNavItem.name;
+    }
+
+    // generate nav options from data items
+    const navItems = data
+      .map(
+        (item) =>
+          `<li class="Dropdown__listItem"><a class="Dropdown__link Header__link" href="${item.url}">${item.name}</a></li>`
+      )
+      .join("");
+
+    // remove loader
+    menuButton.classList.toggle("load");
+    // set options to menu select
+    menuList.innerHTML = navItems;
+
+    // apply dropdown accessibility only when dropdown-list-items are rendered
+    applyDropdownAccessibility();
+
+    // if there is more then 8 menu items
+    // set such a height so that the user understands
+    // that it is possible to scroll down
+    if (data.length > 7 && window.innerWidth >= minDesktopWidth) {
+      // menuList.style.maxHeight = menuOverflowMaxHeight
+      menuList.classList.add("overflow");
+    }
+  };
+
+  // dropdown menu accessibilty
+  function applyDropdownAccessibility() {
+    const dropdownLinks = document.querySelectorAll(".Dropdown__link");
+    const lastDropdownLinkItem = dropdownLinks.length - 1;
+
+    dropdownLinks[lastDropdownLinkItem].addEventListener("blur", function () {
+      menuButton.setAttribute("aria-expanded", false);
+    });
+  }
+});
 
 },{"@cubejs-client/core":29}],597:[function(require,module,exports){
 const cubeTracking = require('cubedev-tracking');
