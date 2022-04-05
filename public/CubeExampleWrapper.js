@@ -37,8 +37,7 @@ CubeExampleWrapper._renderDescription = (root) => {
 CubeExampleWrapper._renderFooter = (root) =>
   documentBody.insertBefore(parseHTML(footerTemplate), root.nextSibling);
 
-CubeExampleWrapper.render = async function (rootId) {
-  const root = document.querySelector(`#${rootId}`);
+CubeExampleWrapper.render = function (root) {
   this._renderHeader(root);
   this._renderDescription(root);
   this._renderFooter(root);
