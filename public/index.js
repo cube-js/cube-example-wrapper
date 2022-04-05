@@ -12,10 +12,6 @@ const injectScript = (src, t, c) => {
 //   injectScript("bundle.js", "body");
 // };
 
-// const injectBrowserLog = () => {
-//   injectScript("./js/monitoring.js", "head");
-// };
-
 (function (d, s, id) {
   let js,
     fjs = d.querySelector(s);
