@@ -8,9 +8,6 @@ const injectScript = (src, t, c) => {
   c ? (s.text = c) : null;
   document.querySelector(t).appendChild(s);
 };
-// const injectBundle = () => {
-//   injectScript("bundle.js", "body");
-// };
 
 (function (d, s, id) {
   let js,
@@ -36,5 +33,3 @@ const injectScript = (src, t, c) => {
   js.src = "https://www.datadoghq-browser-agent.com/datadog-logs-v4.js";
   fjs.appendChild(js);
 })(document, "head", "datadog-logs-v4");
-
-export { injectScript };

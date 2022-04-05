@@ -41,8 +41,6 @@ CubeExampleWrapper.render = function (root) {
   this._renderHeader(root);
   this._renderDescription(root);
   this._renderFooter(root);
-
-  // injectBundle();
 };
 
 export default CubeExampleWrapper;
