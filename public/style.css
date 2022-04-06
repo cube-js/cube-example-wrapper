@@ -104,14 +104,15 @@
   );
 
   /* SKELETON LOADER */
-  --skeleton-base-color: var(--light-02);
-  --skeleton-shine-color: var(--color-black-6);
-  --skeleton-animation-duration: 3s;
+  --skeleton-base-color: hsla(240, 12%, 97%, 1);
+  --skeleton-shine-color: hsla(240, 56%, 18%, 0.06);
+  --skeleton-animation-duration: 1.4s;
+  --skeleton-background-size: 200%;
   --skeleton-background-image: linear-gradient(
     90deg,
-    var(--color-black-0) 20%,
-    var(--color-black-4) 55%,
-    var(--color-black-0) 80%
+    hsla(240, 56%, 18%, 0) 0,
+    hsla(240, 56%, 18%, 0.04) 50px,
+    hsla(240, 56%, 18%, 0) 100px
   );
 }
 
@@ -150,16 +151,12 @@
 }
 
 @keyframes shine {
-  0% {
-    background-position: -220px;
+  from {
+    background-position: 100%;
   }
 
-  60% {
-    background-position: 30px;
-  }
-
-  100% {
-    background-position: 220px;
+  to {
+    background-position: -100%;
   }
 }
 
@@ -702,8 +699,10 @@ a.Header__link:hover {
 .Dropdown__button.load {
   min-width: 150px;
   background-image: var(--skeleton-background-image) !important;
+  background-size: var(--skeleton-background-size) !important;
   background-color: var(--skeleton-base-color) !important;
-  animation: shine var(--skeleton-animation-duration) infinite linear !important;
+  animation: shine var(--skeleton-animation-duration) infinite ease-out !important;
+  cursor: default;
 }
 
 .Dropdown__button.load svg {
