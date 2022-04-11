@@ -10,7 +10,7 @@ const parseHTML = (html) => {
   return htmlRaw.body.firstChild;
 };
 
-class CubeExampleWrapper {
+class Wrapper {
   #description = {
     title: "Cube Example",
     text: "This demo shows Cube app example",
@@ -52,4 +52,4 @@ class CubeExampleWrapper {
   };
 }
 
-export default CubeExampleWrapper;
+export default Wrapper;
