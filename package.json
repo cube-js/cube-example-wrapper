@@ -6,7 +6,8 @@
   "author": "Carina <revuwem@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^17.0.0"
+    "browserify": "^17.0.0",
+    "http-server": "^14.1.0"
   },
   "scripts": {
     "bundle": "browserify public/js/menu.js public/js/index.js public/js/feedback.js public/js/tracking.js -o public/bundle.js",
@@ -14,7 +15,6 @@
   },
   "dependencies": {
     "@cubejs-client/core": "^0.29.33",
-    "cubedev-tracking": "^1.1.0",
-    "http-server": "^14.1.0"
+    "cubedev-tracking": "^1.1.0"    
   }
 }
