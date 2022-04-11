@@ -10,37 +10,46 @@ const parseHTML = (html) => {
   return htmlRaw.body.firstChild;
 };
 
-let CubeExampleWrapper = {};
+class CubeExampleWrapper {
+  #description = {
+    title: "Cube Example",
+    text: "This demo shows Cube app example",
+    tutorialLabel: "tutorial",
+    tutorialSrc: "#",
+    sourceCodeSrc: "#",
+  };
+  #root;
 
-CubeExampleWrapper.description = {
-  title: "Cube Example",
-  text: "This demo shows Cube app example",
-  tutorialLabel: "tutorial",
-  tutorialSrc: "#",
-  sourceCodeSrc: "#",
-};
+  constructor(description) {
+    this.#description = description;
+  }
 
-CubeExampleWrapper._renderHeader = (root) =>
-  documentBody.insertBefore(parseHTML(headerTemplate), root);
+  #renderHeader = () =>
+    documentBody.insertBefore(parseHTML(headerTemplate), this.#root);
 
-CubeExampleWrapper._renderDescription = (root) => {
-  const { title, text, tutorialLabel, tutorialSrc, sourceCodeSrc } =
-    CubeExampleWrapper.description;
-  documentBody.insertBefore(parseHTML(descriptionTemplate), root);
-  document.querySelector(".Description__title").innerHTML = title;
-  document.querySelector(".Description__text").innerHTML = text;
-  document.querySelector(".Description__tutorial").innerHTML = tutorialLabel;
-  document.querySelector(".Description__tutorial").href = tutorialSrc;
-  document.querySelector(".Description__sourceCode").href = sourceCodeSrc;
-};
+  #renderDescription = () => {
+    const { title, text, tutorialLabel, tutorialSrc, sourceCodeSrc } =
+      this.#description;
+    documentBody.insertBefore(parseHTML(descriptionTemplate), this.#root);
+    document.querySelector(".Description__title").innerHTML = title;
+    document.querySelector(".Description__text").innerHTML = text;
+    document.querySelector(".Description__tutorial").innerHTML = tutorialLabel;
+    document.querySelector(".Description__tutorial").href = tutorialSrc;
+    document.querySelector(".Description__sourceCode").href = sourceCodeSrc;
+  };
 
-CubeExampleWrapper._renderFooter = (root) =>
-  documentBody.insertBefore(parseHTML(footerTemplate), root.nextSibling);
+  #renderFooter = () =>
+    documentBody.insertBefore(
+      parseHTML(footerTemplate),
+      this.#root.nextSibling
+    );
 
-CubeExampleWrapper.render = function (root) {
-  this._renderHeader(root);
-  this._renderDescription(root);
-  this._renderFooter(root);
-};
+  render = (root) => {
+    this.#root = root;
+    this.#renderHeader();
+    this.#renderDescription();
+    this.#renderFooter();
+  };
+}
 
 export default CubeExampleWrapper;
