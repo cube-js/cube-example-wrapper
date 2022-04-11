@@ -1,8 +1,8 @@
-const documentBody = document.querySelector("body");
-
 import headerTemplate from "./components/header";
 import footerTemplate from "./components/footer";
 import descriptionTemplate from "./components/description";
+
+const documentBody = document.querySelector("body");
 
 const parseHTML = (html) => {
   const parser = new DOMParser();
