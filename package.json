@@ -1,7 +1,6 @@
 {
   "name": "cube-example-wrapper",
   "version": "1.0.0",
-  "main": "public/index.js",
   "repository": "https://github.com/cubedevinc/examples-wrapper.git",
   "author": "Carina <revuwem@gmail.com>",
   "license": "MIT",
@@ -10,7 +9,7 @@
     "http-server": "^14.1.0"
   },
   "scripts": {
-    "bundle": "browserify public/js/menu.js public/js/index.js public/js/feedback.js public/js/tracking.js -o public/bundle.js",
+    "bundle": "browserify src/js/menu.js src/js/index.js src/js/feedback.js src/js/tracking.js -o public/bundle.js",
     "start": "yarn bundle && http-server -c-1"
   },
   "dependencies": {

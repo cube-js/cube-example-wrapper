@@ -1,6 +1,3 @@
-import CubeExampleWrapper from "./CubeExampleWrapper";
-export default CubeExampleWrapper;
-
 const injectScript = (src, t, c) => {
   const s = document.createElement("script");
   s.type = "text/javascript";
