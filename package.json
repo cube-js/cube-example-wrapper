@@ -5,15 +5,21 @@
   "author": "Carina <revuwem@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-export-default-from": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "http-server": "^14.1.0"
   },
   "scripts": {
-    "bundle": "browserify src/js/menu.js src/js/index.js src/js/feedback.js src/js/tracking.js -o public/bundle.js",
+    "bundle": "browserify src/js/*.js -t babelify -o index.js",
     "start": "yarn bundle && http-server -c-1"
   },
   "dependencies": {
     "@cubejs-client/core": "^0.29.33",
-    "cubedev-tracking": "^1.1.0"    
+    "cubedev-tracking": "^1.1.0"
   }
 }
