@@ -1,5 +1,6 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   target: "web",
@@ -14,6 +15,16 @@ module.exports = {
     globalObject: "this",
     umdNamedDefine: true,
   },
+  watchOptions: {
+    aggregateTimeout: 600,
+    ignored: /node_modules/,
+  },
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, "./dist")],
+    }),
+  ],
   module: {
     rules: [
       {
