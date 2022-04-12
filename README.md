@@ -1,10 +1,5 @@
 # examples-wrapper
 
-Required dependicies:
-1. `@cubejs-client/core`
-2. `cubedev-tracking`
-3. `browserify`
-
 How to integrate it into existing example demo:
 1. Copy `/public` folder
 2. Check **TODO** at `index.html` and fill the gaps
@@ -14,3 +9,4 @@ How to integrate it into existing example demo:
 4. Install required dependicies
 5. Copy `"bundle"` package.json script and run it to build client-side js
 6. Copy `"preview"` package.json script and run it to build preview link on Netlify
+7. Add `public/bundle.js` to `.gitignore`

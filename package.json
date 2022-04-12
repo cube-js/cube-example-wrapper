@@ -1,22 +1,21 @@
 {
   "name": "cube-example-wrapper",
   "version": "1.0.0",
+  "main": "./dist/main.js",
   "repository": "https://github.com/cubedevinc/examples-wrapper.git",
   "author": "Carina <revuwem@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-proposal-export-default-from": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
-    "babelify": "^10.0.0",
-    "browserify": "^17.0.0",
-    "http-server": "^14.1.0"
+    "babel-loader": "^8.2.4",
+    "css-loader": "^6.7.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   },
   "scripts": {
-    "bundle": "browserify src/js/*.js -t babelify -o index.js",
-    "start": "yarn bundle && http-server -c-1"
+    "bundle": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "@cubejs-client/core": "^0.29.33",
