@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .replace("px", "");
 
   const cubejsApi = cubejs(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDk3NzkyOTh9._9WeuDUgfBbWs6ZkS-kphcXRjGYAVtGKSVw1WZmOeLA",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjEwMDAwMDAwMDAsImV4cCI6NTAwMDAwMDAwMH0.OHZOpOBVKr-sCwn8sbZ5UFsqI3uCs6e4omT7P6WVMFw",
     {
       apiUrl:
         "https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1",
