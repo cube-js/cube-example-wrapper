@@ -53,4 +53,9 @@ class Wrapper {
   };
 }
 
-export default Wrapper;
+const createExampleWrapper = (description) => {
+  const wrapper = new Wrapper(description);
+  wrapper.render();
+};
+
+export default createExampleWrapper;
