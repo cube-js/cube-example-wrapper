@@ -18,19 +18,25 @@ class Wrapper {
     tutorialSrc: "#",
     sourceCodeSrc: "#",
   };
-  #root;
 
   constructor(description) {
     this.#description = description;
   }
 
   #renderHeader = () =>
-    documentBody.insertBefore(parseHTML(headerTemplate), this.#root);
+    documentBody.insertBefore(
+      parseHTML(headerTemplate),
+      documentBody.firstChild
+    );
 
   #renderDescription = () => {
     const { title, text, tutorialLabel, tutorialSrc, sourceCodeSrc } =
       this.#description;
-    documentBody.insertBefore(parseHTML(descriptionTemplate), this.#root);
+    const header = document.querySelector(".Header");
+    documentBody.insertBefore(
+      parseHTML(descriptionTemplate),
+      header.nextSibling
+    );
     document.querySelector(".Description__title").innerHTML = title;
     document.querySelector(".Description__text").innerHTML = text;
     document.querySelector(".Description__tutorial").innerHTML = tutorialLabel;
@@ -38,14 +44,9 @@ class Wrapper {
     document.querySelector(".Description__sourceCode").href = sourceCodeSrc;
   };
 
-  #renderFooter = () =>
-    documentBody.insertBefore(
-      parseHTML(footerTemplate),
-      this.#root.nextSibling
-    );
+  #renderFooter = () => documentBody.appendChild(parseHTML(footerTemplate));
 
-  render = (root) => {
-    this.#root = root;
+  render = () => {
     this.#renderHeader();
     this.#renderDescription();
     this.#renderFooter();
