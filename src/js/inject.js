@@ -6,16 +6,14 @@
 import wrapperStyle from "../style.css";
 
 // inject DD Browser Logs
-(function (d, s, id) {
-  let js,
-    fjs = d.querySelector(s);
-  if (d.getElementById(id)) {
+(function (scriptId) {
+  if (document.getElementById(scriptId)) {
     return;
   }
-  js = d.createElement("script");
-  js.id = id;
-  js.onload = function () {
-    var c = `
+  const script = document.createElement("script");
+  script.id = scriptId;
+  script.onload = function () {
+    var code = `
     window.DD_LOGS &&
       DD_LOGS.init({
         clientToken: "pubedf0a35240b3fb633f1c005b86c571df",
@@ -25,24 +23,23 @@ import wrapperStyle from "../style.css";
         service: "cube-examples",
       });
     `;
-    injectScript(null, "head", c);
+    injectScript(null, "head", code);
   };
-  js.src = "https://www.datadoghq-browser-agent.com/datadog-logs-v4.js";
-  fjs.appendChild(js);
-})(document, "head", "datadog-logs-v4");
+  script.src = "https://www.datadoghq-browser-agent.com/datadog-logs-v4.js";
+  document.querySelector("head").appendChild(script);
+})("datadog-logs-v4");
 
-const injectScript = (src, t, c) => {
-  const s = document.createElement("script");
-  s.type = "text/javascript";
-  src ? (s.src = src) : null;
-  c ? (s.text = c) : null;
-  document.querySelector(t).appendChild(s);
+const injectScript = (src, tag, code) => {
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  src ? (script.src = src) : null;
+  code ? (script.text = code) : null;
+  document.querySelector(tag).appendChild(script);
 };
 
 // Inject stylesheet
 (function () {
   const style = document.createElement("style");
-  style.type = "text/css";
   style.innerHTML = wrapperStyle.toString();
   document.querySelector("head").appendChild(style);
 })();
