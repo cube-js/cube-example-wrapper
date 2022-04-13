@@ -867,7 +867,7 @@ a.Header__link:hover {
   align-items: center;
 }
 
-.Description__title {
+h2.Description__title {
   font-family: var(--font-family-bold);
   font-weight: 700;
   font-size: 32px;
