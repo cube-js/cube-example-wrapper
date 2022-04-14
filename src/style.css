@@ -88,6 +88,8 @@
   --breakpoint-desktop-xs: 1180px;
 
   /* ASSETS */
+  --block-max-width: 1440px;
+
   /* DON'T REMOVE IT: USES AT JS  */
   --additional_scroll_height: 0px;
 
@@ -307,6 +309,8 @@ ul {
   position: relative;
   height: var(--header_height);
   padding-right: var(--header_padding);
+  max-width: var(--block-max-width);
+  margin: 0 auto;
 
   /* animation duration of left menu on mobile */
   --time: 0.5s;
@@ -1063,6 +1067,8 @@ h2.Description__title {
   background-color: #fff;
   height: 120px;
   justify-self: flex-end;
+  max-width: var(--block-max-width);
+  margin: 0 auto;
 }
 
 /* flex wrap at feedback block triggers at 414px and less */
