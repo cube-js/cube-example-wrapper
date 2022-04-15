@@ -13,14 +13,26 @@ const parseHTML = (html) => {
 class Wrapper {
   #description = {
     title: "Cube Example",
-    text: "This demo shows Cube app example",
+    text: "This live demo shows a data app built with Cube",
     tutorialLabel: "tutorial",
     tutorialSrc: "#",
     sourceCodeSrc: "#",
   };
 
   constructor(description) {
-    this.#description = description;
+    const {
+      title = "Cube Example",
+      text = "This live demo shows a data app built with Cube",
+      tutorialLabel = "tutorial",
+      tutorialSrc = "#",
+      sourceCodeSrc = "#",
+    } = description;
+
+    this.#description.title = title;
+    this.#description.text = text;
+    this.#description.tutorialLabel = tutorialLabel;
+    this.#description.tutorialSrc = tutorialSrc;
+    this.#description.sourceCodeSrc = sourceCodeSrc;
   }
 
   #renderHeader = () =>
