@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./dist/main.js",
   "repository": "https://github.com/cubedevinc/examples-wrapper.git",
-  "author": "Carina <revuwem@gmail.com>",
+  "author": "Carina Grishaeva <carina@gcube.dev>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.9",
