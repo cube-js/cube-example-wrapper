@@ -26,9 +26,9 @@
 }
 
 @font-face {
-  font-family: Inter;
-  src: url(https://cube.dev/docs/static/Inter-Regular-e6e8bb3a4f2ded1c22ad5e6277f7d601.woff2)
-    format("woff2");
+  font-family: "Inter";
+  src: url(https://static.cube.dev/fonts/Inter-Regular.woff2) format("woff2"),
+    url(https://static.cube.dev/fonts/Inter-Regular.woff) format("woff");
 }
 
 :root {
@@ -1037,7 +1037,7 @@ h2.Description__title {
 }
 
 .Form-textarea {
-  font-family: Cera Pro, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
