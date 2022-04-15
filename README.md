@@ -1,12 +1,33 @@
-# examples-wrapper
+# Cube examples wrapper
+This package contains common layout and features like user tracking, feedback and errors logging for [Cube Examples live demo](https://github.com/cube-js/cube.js/tree/master/examples).
 
-How to integrate it into existing example demo:
-1. Copy `/public` folder
-2. Check **TODO** at `index.html` and fill the gaps
-3. Add to env CUBE_EXAMPLES_META_* variables (prefix may be required if the dashboard-app use framework-specific environment):
-    - `[preifx_]CUBE_EXAMPLES_META_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg0ODc1MzF9.3uTCoC-XGy1MxYoe3Wzbokx6gL0fOpwJG0R_quSDGvg`
-    - `[preifx_]CUBE_EXAMPLES_META_API_URL=https://relevant-badger.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1`
-4. Install required dependicies
-5. Copy `"bundle"` package.json script and run it to build client-side js
-6. Copy `"preview"` package.json script and run it to build preview link on Netlify
-7. Add `public/bundle.js` to `.gitignore`
+## Installation
+Install package via yarn or npm:
+
+    $ yarn add cube-example-wrapper
+
+## Usage
+At entry point of your app import `createExampleWrapper`:
+
+~~~ js
+import createExampleWrapper from "cube-example-wrapper"
+~~~
+
+Define example description object contains fields described below and fill it with your values:
+
+~~~ js
+const exampleDescription = {
+  title: "demo title",
+  text: "demo description text",
+  tutorialLabel: "story or tutorial",
+  tutorialSrc: "link to story or tutorial",
+  sourceCodeSrc: "link to source code on GitHub",
+};
+~~~
+
+Call `createExampleWrapper` with passed `exampleDescription`:
+
+~~~ js
+createExampleWrapper(exampleDescription)
+~~~
+
