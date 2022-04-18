@@ -1,5 +1,4 @@
-const cubeTracking = require("cubedev-tracking");
-const { event: cubeTrackingEvent } = cubeTracking;
+import { event as cubeTrackingEvent } from "cubedev-tracking";
 
 window.addEventListener("DOMContentLoaded", () => {
   // controls
@@ -36,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
     showFeedbackMessageForm();
   };
 
-  feedbackLikeBtn.addEventListener("click", (e) => {
+  feedbackLikeBtn.addEventListener("click", () => {
     if (feedback) return;
 
     submitFeedbackLike(FEEDBACK_LIKE);

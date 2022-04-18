@@ -1,4 +1,4 @@
-const cubejs = require("@cubejs-client/core").default;
+import cubejs from "@cubejs-client/core";
 
 window.addEventListener("DOMContentLoaded", () => {
   // DOM

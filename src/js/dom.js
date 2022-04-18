@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // because additional height can only decrease
   let prevAdditionalScrollHeight;
 
-  const scrollListener = (e) => {
+  const scrollListener = () => {
     const { scrollY } = window;
     if (prevAdditionalScrollHeight > scrollY) {
       document.body.style.setProperty(
@@ -82,7 +82,7 @@ window.addEventListener("DOMContentLoaded", () => {
     navToggleBtn.setAttribute("aria-label", "Close menu");
   };
 
-  navToggleBtn.addEventListener("click", (e) => {
+  navToggleBtn.addEventListener("click", () => {
     if (header.classList.contains("Header--open")) {
       hideNav();
     } else {
@@ -106,7 +106,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const dropdown = document.querySelector("#menu");
   const dropdownMenuBtn = document.querySelector("#menu-button");
   const dropdownMenuList = document.querySelector("#menu-list");
-  dropdownMenuBtn.addEventListener("click", function (e) {
+  dropdownMenuBtn.addEventListener("click", function () {
     dropdownMenuList.scrollTop = 0;
     if (this.getAttribute("aria-expanded") === "true") {
       this.setAttribute("aria-expanded", false);
