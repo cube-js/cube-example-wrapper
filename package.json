@@ -2,7 +2,7 @@
   "name": "cube-example-wrapper",
   "version": "1.0.0",
   "main": "./dist/main.js",
-  "repository": "https://github.com/cubedevinc/examples-wrapper.git",
+  "repository": "https://github.com/cube-js/cube-examples-wrapper",
   "author": "Carina Grishaeva <carina@gcube.dev>",
   "license": "MIT",
   "publishConfig": {
