@@ -20,7 +20,7 @@ class Wrapper {
       tutorialLabel = "tutorial",
       tutorialSrc = "#",
       sourceCodeSrc = "#",
-    } = description || {};
+    } = description;
 
     this.#description.title = title;
     this.#description.text = text;
@@ -60,8 +60,12 @@ class Wrapper {
 }
 
 const createExampleWrapper = (description) => {
-  const wrapper = new Wrapper(description);
-  wrapper.render();
+  try {
+    const wrapper = new Wrapper(description);
+    wrapper.render();
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export default createExampleWrapper;
