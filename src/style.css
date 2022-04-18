@@ -1,18 +1,21 @@
 @font-face {
   font-family: "Cera Pro";
-  src: url(https://static.cube.dev/fonts/CeraPro-Regular.woff2) format("woff2");
+  src: url(https://static.cube.dev/fonts/CeraPro-Regular.woff2) format("woff2"),
+    url(https://static.cube.dev/fonts/CeraPro-Regular.woff) format("woff");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "Cera Pro";
-  src: url(https://static.cube.dev/fonts/CeraPro-Medium.woff2) format("woff2");
+  src: url(https://static.cube.dev/fonts/CeraPro-Medium.woff2) format("woff2"),
+    url(https://static.cube.dev/fonts/CeraPro-Medium.woff) format("woff");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "Cera Pro";
-  src: url(https://static.cube.dev/fonts/CeraPro-Medium.woff2) format("woff2");
+  src: url(https://static.cube.dev/fonts/CeraPro-Medium.woff2) format("woff2"),
+    url(https://static.cube.dev/fonts/CeraPro-Medium.woff) format("woff");
   font-weight: 700;
 }
 
@@ -23,8 +26,9 @@
 }
 
 @font-face {
-  font-family: Inter;
-  src: url(https://cube.dev/docs/static/Inter-Regular-e6e8bb3a4f2ded1c22ad5e6277f7d601.woff2) format("woff2");
+  font-family: "Inter";
+  src: url(https://static.cube.dev/fonts/Inter-Regular.woff2) format("woff2"),
+    url(https://static.cube.dev/fonts/Inter-Regular.woff) format("woff");
 }
 
 :root {
@@ -50,17 +54,11 @@
   --pink_bg_a10: hsl(342, 95%, 70%, 0.1);
   --pink_bright: hsl(342, 95%, 59%, 1);
 
-  /* BLACK SHADOWS */
-  --color-black: 20, 20, 70;
-  --color-black-0: rgba(var(--color-black), 0);
-  --color-black-4: rgba(var(--color-black), 0.04);
-  --color-black-6: rgba(var(--color-black), 0.06);
-  --color-black-7: rgba(var(--color-black), 0.07);
-  --color-black-10: rgba(var(--color-black), 0.1);
-  --color-black-12: rgba(var(--color-black), 0.12);
-  --color-black-75: rgba(var(--color-black), 0.75);
-  --color-black-85: rgba(var(--color-black), 0.85);
-  --color-black-100: rgba(var(--color-black), 1);
+  --black: 20, 20, 70;
+  --black-7: rgba(var(--black), 0.07);
+  --black-75: rgba(var(--black), 0.75);
+  --black-85: rgba(var(--black), 0.85);
+  --black-100: rgba(var(--black), 1);
 
   --success-default: rgba(65, 181, 111, 0.12);
   --success-hover: rgba(65, 181, 111, 0.22);
@@ -71,11 +69,13 @@
   --font-size-regular: 16px;
   --line-height-regular: 1.625;
   --letter-spacing-regular: 0.5%;
-  --text-color-regular: var(--color-black-75);
-  --font-family-regular: Cera Pro, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --font-family-bold: Cera Pro Bold, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --text-color-regular: var(--black-75);
+  --font-family-regular: Cera Pro, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --font-family-bold: Cera Pro Bold, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 
   /* TRANSITION */
   --time: 0.7s;
@@ -88,22 +88,27 @@
   --breakpoint-desktop-xs: 1180px;
 
   /* ASSETS */
+  --block-max-width: 1440px;
+
   /* DON'T REMOVE IT: USES AT JS  */
   --additional_scroll_height: 0px;
 
   --menu-max-height: 400px;
   --menu-overflow-offset: 25px;
-  --menu-overflow-max-height: calc(var(--menu-max-height) + var(--menu-overflow-offset));
+  --menu-overflow-max-height: calc(
+    var(--menu-max-height) + var(--menu-overflow-offset)
+  );
 
   /* SKELETON LOADER */
-  --skeleton-base-color: var(--light-02);
-  --skeleton-shine-color: var(--color-black-6);
-  --skeleton-animation-duration: 3s;
+  --skeleton-base-color: hsla(240, 12%, 97%, 1);
+  --skeleton-shine-color: hsla(240, 56%, 18%, 0.06);
+  --skeleton-animation-duration: 1.4s;
+  --skeleton-background-size: 200%;
   --skeleton-background-image: linear-gradient(
     90deg,
-    var(--color-black-0) 20%,
-    var(--color-black-4) 55%,
-    var(--color-black-0) 80%
+    hsla(240, 56%, 18%, 0) 0,
+    hsla(240, 56%, 18%, 0.04) 50px,
+    hsla(240, 56%, 18%, 0) 100px
   );
 }
 
@@ -142,16 +147,12 @@
 }
 
 @keyframes shine {
-  0% {
-    background-position: -220px;
+  from {
+    background-position: 100%;
   }
 
-  60% {
-    background-position: 30px;
-  }
-
-  100% {
-    background-position: 220px;
+  to {
+    background-position: -100%;
   }
 }
 
@@ -308,6 +309,8 @@ ul {
   position: relative;
   height: var(--header_height);
   padding-right: var(--header_padding);
+  max-width: var(--block-max-width);
+  margin: 0 auto;
 
   /* animation duration of left menu on mobile */
   --time: 0.5s;
@@ -469,7 +472,9 @@ a.Header__link:hover {
     background-color: var(--white);
     width: auto;
     min-width: 225px;
-    height: calc(100vh - var(--header_height) + var(--additional_scroll_height));
+    height: calc(
+      100vh - var(--header_height) + var(--additional_scroll_height)
+    );
     margin-top: var(--header_height);
     overflow-y: auto;
     overflow-x: hidden;
@@ -491,16 +496,20 @@ a.Header__link:hover {
     transform: none;
   }
 
-  .Header__navigation .Dropdown__button[aria-expanded="true"] ~ .Dropdown__content {
+  .Header__navigation
+    .Dropdown__button[aria-expanded="true"]
+    ~ .Dropdown__content {
     display: contents;
   }
 
-   .Header .Header__overlay{
+  .Header .Header__overlay {
     background-color: var(--dark_05_a12);
     position: absolute;
     top: 100%;
     left: 0;
-    height: calc(100vh - var(--header_height) + var(--additional_scroll_height));
+    height: calc(
+      100vh - var(--header_height) + var(--additional_scroll_height)
+    );
     width: 100%;
     z-index: 99;
     opacity: 0;
@@ -508,7 +517,7 @@ a.Header__link:hover {
     transition: opacity var(--time);
   }
 
-  .Header.Header--open .Header__overlay{
+  .Header.Header--open .Header__overlay {
     opacity: 1;
     pointer-events: auto;
   }
@@ -688,8 +697,10 @@ a.Header__link:hover {
 .Dropdown__button.load {
   min-width: 150px;
   background-image: var(--skeleton-background-image) !important;
+  background-size: var(--skeleton-background-size) !important;
   background-color: var(--skeleton-base-color) !important;
-  animation: shine var(--skeleton-animation-duration) infinite linear !important;
+  animation: shine var(--skeleton-animation-duration) infinite ease-out !important;
+  cursor: default;
 }
 
 .Dropdown__button.load svg {
@@ -739,7 +750,7 @@ a.Header__link:hover {
 
 .Dropdown__link {
   text-decoration: none;
-  color: var(--color-black-100);
+  color: var(--black-100);
   font-size: var(--font-size-regular);
   line-height: var(--line-height-regular);
   letter-spacing: var(--letter-spacing-regular);
@@ -782,7 +793,9 @@ a.Header__link:hover {
     --dropdown-max-height: 480px;
     --dropdown-overflow-offset: 28px; /* half of visible part of dropdown link */
     /* DON'T REMOVE IT: USES AT JS  */
-    --dropdown-overflow-max-height: calc(var(--dropdown-max-height) + var(--dropdown-overflow-offset));
+    --dropdown-overflow-max-height: calc(
+      var(--dropdown-max-height) + var(--dropdown-overflow-offset)
+    );
   }
 
   .Dropdown__content::-webkit-scrollbar {
@@ -858,13 +871,13 @@ a.Header__link:hover {
   align-items: center;
 }
 
-.Title {
+h2.Description__title {
   font-family: var(--font-family-bold);
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 8px;
   text-align: center;
-  color: var(--color-black-100);
+  color: var(--black-100);
 }
 
 .Description p {
@@ -926,7 +939,7 @@ a.Header__link:hover {
 
   padding: 12px;
   background-color: #fff;
-  box-shadow: 0px 8px 16px var(--color-black-7);
+  box-shadow: 0px 8px 16px var(--black-7);
   border-radius: 8px;
 
   display: flex;
@@ -1025,9 +1038,10 @@ a.Header__link:hover {
 
 .Form-textarea {
   font-family: Inter, sans-serif;
+  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: var(--color-black-85);
+  color: var(--black-85);
 
   width: 100%;
   min-height: 80px;
@@ -1053,6 +1067,8 @@ a.Header__link:hover {
   background-color: #fff;
   height: 120px;
   justify-self: flex-end;
+  max-width: var(--block-max-width);
+  margin: 0 auto;
 }
 
 /* flex wrap at feedback block triggers at 414px and less */
