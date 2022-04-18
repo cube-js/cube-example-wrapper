@@ -1,6 +1,6 @@
-import headerTemplate from "../components/header";
-import footerTemplate from "../components/footer";
-import descriptionTemplate from "../components/description";
+import headerTemplate from "../components/header.html";
+import footerTemplate from "../components/footer.html";
+import descriptionTemplate from "../components/description.html";
 
 const documentBody = document.querySelector("body");
 

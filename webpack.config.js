@@ -34,6 +34,10 @@ module.exports = {
         use: ["css-loader"],
       },
       {
+        test: /\.html$/i,
+        use: ["html-loader"],
+      },
+      {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
