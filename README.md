@@ -10,7 +10,7 @@ Install package via yarn or npm:
 At entry point of your app import `createExampleWrapper`:
 
 ~~~ js
-import createExampleWrapper from "cube-example-wrapper"
+import createExampleWrapper from "cube-example-wrapper";
 ~~~
 
 Define example description object contains fields described below and fill it with your values:
@@ -19,7 +19,7 @@ Define example description object contains fields described below and fill it wi
 const exampleDescription = {
   title: "demo title",
   text: "demo description text",
-  tutorialLabel: "story or tutorial",
+  tutorialLabel: "use `story` or `tutorial` value",
   tutorialSrc: "link to story or tutorial",
   sourceCodeSrc: "link to source code on GitHub",
 };
@@ -28,6 +28,6 @@ const exampleDescription = {
 Call `createExampleWrapper` with passed `exampleDescription`:
 
 ~~~ js
-createExampleWrapper(exampleDescription)
+createExampleWrapper(exampleDescription);
 ~~~
 
