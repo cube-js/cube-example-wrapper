@@ -11,13 +11,7 @@ const parseHTML = (html) => {
 };
 
 class Wrapper {
-  #description = {
-    title: "Cube Example",
-    text: "This live demo shows a data app built with Cube",
-    tutorialLabel: "tutorial",
-    tutorialSrc: "#",
-    sourceCodeSrc: "#",
-  };
+  #description = {};
 
   constructor(description) {
     const {
@@ -26,7 +20,7 @@ class Wrapper {
       tutorialLabel = "tutorial",
       tutorialSrc = "#",
       sourceCodeSrc = "#",
-    } = description;
+    } = description || {};
 
     this.#description.title = title;
     this.#description.text = text;
