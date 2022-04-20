@@ -6,8 +6,7 @@
   "author": "Carina Grishaeva <carina@gcube.dev>",
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "registry":"https://npm.pkg.github.com"
+    "access": "public"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
