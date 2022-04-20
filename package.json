@@ -1,12 +1,13 @@
 {
-  "name": "cube-example-wrapper",
-  "version": "1.0.0",
+  "name": "@cube-js/cube-example-wrapper",
+  "version": "1.0.6",
   "main": "./dist/main.js",
-  "repository": "https://github.com/cube-js/cube-examples-wrapper",
+  "repository": "git@github.com:cube-js/cube-examples-wrapper.git",
   "author": "Carina Grishaeva <carina@gcube.dev>",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry":"https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
