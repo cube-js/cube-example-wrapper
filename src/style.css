@@ -889,7 +889,7 @@ h2.Description__title {
   text-align: center;
 }
 
-.Link {
+.Description a {
   color: var(--purple-text);
   font-size: 16px;
   line-height: 1.625;
@@ -902,7 +902,7 @@ h2.Description__title {
   transition: 0.1s;
 }
 
-.Link::after {
+.Description a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -913,12 +913,12 @@ h2.Description__title {
   opacity: 0.2;
 }
 
-.Link:hover {
+.Description a:hover {
   opacity: 1;
   color: var(--purple-text);
 }
 
-.Link:hover::after {
+.Description a:hover::after {
   opacity: 0;
 }
 
