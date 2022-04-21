@@ -38,15 +38,8 @@ class Wrapper {
       header.nextSibling
     );
 
-    const createPara = (inner) => {
-      const description = document.querySelector(".Description");
-      const para = document.createElement("p");
-      para.innerHTML = inner;
-      description.appendChild(para);
-    };
-
     document.querySelector(".Description__title").innerHTML = title;
-    createPara(text);
+    document.querySelector(".Description__text").innerHTML = text;
   };
 
   #renderFooter = () => documentBody.appendChild(parseHTML(footerTemplate));
