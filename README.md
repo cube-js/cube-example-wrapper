@@ -24,12 +24,10 @@ Define example description object contains fields described below and fill it wi
 ~~~ js
 const exampleDescription = {
   title: "demo title",
-  text: "demo description text",
-  tutorialLabel: "use `story` or `tutorial` value",
-  tutorialSrc: "link to story or tutorial",
-  sourceCodeSrc: "link to source code on GitHub",
+  text: `demo description text`,
 };
 ~~~
+*Note: you can use html tags inside `text` template string.*
 
 Call `createExampleWrapper` with passed `exampleDescription`:
 
