@@ -17,16 +17,10 @@ class Wrapper {
     const {
       title = "Cube Example",
       text = "This live demo shows a data app built with Cube",
-      tutorialLabel = "tutorial",
-      tutorialSrc = "#",
-      sourceCodeSrc = "#",
     } = description;
 
     this.#description.title = title;
     this.#description.text = text;
-    this.#description.tutorialLabel = tutorialLabel;
-    this.#description.tutorialSrc = tutorialSrc;
-    this.#description.sourceCodeSrc = sourceCodeSrc;
   }
 
   #renderHeader = () =>
@@ -36,18 +30,23 @@ class Wrapper {
     );
 
   #renderDescription = () => {
-    const { title, text, tutorialLabel, tutorialSrc, sourceCodeSrc } =
-      this.#description;
+    const { title, text } = this.#description;
+
     const header = document.querySelector(".Header");
     documentBody.insertBefore(
       parseHTML(descriptionTemplate),
       header.nextSibling
     );
+
+    const createPara = (inner) => {
+      const description = document.querySelector(".Description");
+      const para = document.createElement("p");
+      para.innerHTML = inner;
+      description.appendChild(para);
+    };
+
     document.querySelector(".Description__title").innerHTML = title;
-    document.querySelector(".Description__text").innerHTML = text;
-    document.querySelector(".Description__tutorial").innerHTML = tutorialLabel;
-    document.querySelector(".Description__tutorial").href = tutorialSrc;
-    document.querySelector(".Description__sourceCode").href = sourceCodeSrc;
+    createPara(text);
   };
 
   #renderFooter = () => documentBody.appendChild(parseHTML(footerTemplate));
