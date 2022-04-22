@@ -5,9 +5,6 @@
   "repository": "git@github.com:cube-js/cube-examples-wrapper.git",
   "author": "Carina Grishaeva <carina@gcube.dev>",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
