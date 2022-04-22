@@ -1,5 +1,5 @@
 {
-  "name": "@cube-js/cube-example-wrapper",
+  "name": "cube-example-wrapper",
   "version": "1.0.18",
   "main": "./dist/main.js",
   "repository": "git@github.com:cube-js/cube-examples-wrapper.git",
