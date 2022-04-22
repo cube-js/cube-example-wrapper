@@ -2,15 +2,9 @@
 This package contains common layout and features like user tracking, feedback and errors logging for [Cube Examples live demo](https://github.com/cube-js/cube.js/tree/master/examples).
 
 ## Installation
-Add `.npmrc` configuration file to your project with following content:
+Install package via `yarn`:
 
-    //npm.pkg.github.com/:_authToken={TOKEN}
-    @cube-js:registry=https://npm.pkg.github.com
-
-
-Install package via Github Packages:
-
-    $ npm install @cube-js/cube-example-wrapper@latest
+    $ yarn add cube-example-wrapper
 
 ## Usage
 At entry point of your app import `createExampleWrapper`:
