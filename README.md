@@ -1,31 +1,34 @@
 # Cube examples wrapper
-This package contains common layout and features like user tracking, feedback and errors logging for [Cube Examples live demo](https://github.com/cube-js/cube.js/tree/master/examples).
+
+This package contains common layout and features like user tracking, feedback, and errors logging for Cube's [example applications](https://github.com/cube-js/cube.js/tree/master/examples).
 
 ## Installation
 Install package via `yarn`:
 
-    $ yarn add cube-example-wrapper
+```bash
+yarn add cube-example-wrapper
+```
 
 ## Usage
-At entry point of your app import `createExampleWrapper`:
+At the entry point of your app, import `createExampleWrapper`:
 
-~~~ js
+```js
 import createExampleWrapper from "cube-example-wrapper";
-~~~
+```
 
-Define example description object contains fields described below and fill it with your values:
+Define an example description object and fill it with your values:
 
-~~~ js
+```js
 const exampleDescription = {
   title: "demo title",
   text: `demo description text`,
 };
-~~~
-*Note: you can use html tags inside `text` template string.*
+```
+
+*Note: you can use HTML tags inside the `text` template string.*
 
 Call `createExampleWrapper` with passed `exampleDescription`:
 
-~~~ js
+```js
 createExampleWrapper(exampleDescription);
-~~~
-
+```
