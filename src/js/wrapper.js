@@ -23,6 +23,11 @@ class Wrapper {
     this.#description.text = text;
   }
 
+  #setTitle = () => {
+    const title = document.querySelector("title");
+    title.innerHTML = `${this.#description.title} | Cube Examples`;
+  };
+
   #renderHeader = () =>
     documentBody.insertBefore(
       parseHTML(headerTemplate),
@@ -45,6 +50,7 @@ class Wrapper {
   #renderFooter = () => documentBody.appendChild(parseHTML(footerTemplate));
 
   render = () => {
+    this.#setTitle();
     this.#renderHeader();
     this.#renderDescription();
     this.#renderFooter();
