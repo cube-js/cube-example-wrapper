@@ -709,7 +709,7 @@ a.Header__link:hover {
 
 .Dropdown__button svg {
   display: inline-block;
-  margin-bottom: 1px;
+  margin-top: 2px;
 }
 
 .Dropdown__button span {
