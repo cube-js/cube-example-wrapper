@@ -1,6 +1,6 @@
 {
   "name": "cube-example-wrapper",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "main": "./dist/main.js",
   "repository": "git@github.com:cube-js/cube-examples-wrapper.git",
   "author": "Carina Grishaeva <carina@gcube.dev>",
