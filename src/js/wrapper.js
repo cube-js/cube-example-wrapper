@@ -1,6 +1,7 @@
 import headerTemplate from "../components/header.html";
 import footerTemplate from "../components/footer.html";
 import descriptionTemplate from "../components/description.html";
+import Favicon from "../assets/favicon.ico";
 
 const documentBody = document.querySelector("body");
 
@@ -28,6 +29,11 @@ class Wrapper {
     title.innerHTML = `${this.#description.title} | Cube Examples`;
   };
 
+  #setFavicon = () => {
+    const favicon = document.querySelector("link[rel='icon']");
+    favicon.href = Favicon;
+  };
+
   #renderHeader = () =>
     documentBody.insertBefore(
       parseHTML(headerTemplate),
@@ -51,6 +57,7 @@ class Wrapper {
 
   render = () => {
     this.#setTitle();
+    this.#setFavicon();
     this.#renderHeader();
     this.#renderDescription();
     this.#renderFooter();

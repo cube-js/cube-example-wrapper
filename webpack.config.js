@@ -47,6 +47,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(ico)$/i,
+        type: "asset/inline",
+      },
     ],
   },
   optimization: {
