@@ -30,8 +30,15 @@ class Wrapper {
   };
 
   #setFavicon = () => {
-    const favicon = document.querySelector("link[rel='icon']");
-    favicon.href = Favicon;
+    let favicon = document.querySelector("link[rel~='icon']");
+    if (favicon) {
+      favicon.href = Favicon;
+    } else {
+      favicon = document.createElement("link");
+      favicon.rel = "shortcut icon";
+      favicon.href = Favicon;
+      document.querySelector("head").appendChild(favicon);
+    }
   };
 
   #renderHeader = () =>
