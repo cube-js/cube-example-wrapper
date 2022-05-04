@@ -42,9 +42,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const populateExamplesNav = (data) => {
     // find current nav item index
+    const matchingLocation = window.location.origin + window.location.pathname;
     const currentNavItemIndex = data
       .map((item) => item.url)
-      .indexOf(window.location.href);
+      .indexOf(matchingLocation);
     if (currentNavItemIndex === -1) {
       // if there is no current item in list
       // set plug as current item name
