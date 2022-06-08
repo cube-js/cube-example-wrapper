@@ -31,7 +31,7 @@
     </button>
     <div class="Header__overlay" id="headerOverlay"></div>
     <nav class="Header__navigation" id="headerNavigation" aria-controls="toggleMenuVisibilityButton">
-        <div class="Dropdown Header__linkList" id="menu">
+        <div class="Header__linkList" id="menu">
             <button class="Dropdown__button Header__link Button Button--outline Button--size-s load" id="menu-button"
                 aria-expanded="false" tabindex="0">
                 <span id="menu-button-text" class="Dropdown__text"></span>
@@ -40,9 +40,14 @@
                     <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" />
                 </svg>
             </button>
-            <!-- add class .overflow and > 7 .Dropdown__link items to test overflow behaviour  -->
-            <ul class="Header__dropdownMenuList Dropdown__content" id="menu-list" aria-label="Cube examples list">
-            </ul>
+            <div class="Popup">
+                <button id="close" class="Popup__closeButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
+                        <path d="m16 32 16-16M16 16l16 16" stroke="currentColor" stroke-width="1.6"/>
+                    </svg>
+                </button>
+                <ul class="Popup__examplesList"></ul>
+            </div>
         </div>
         <ul class="Header__linkList Header__linkList--actions">
             <li class="Header__linkItem">

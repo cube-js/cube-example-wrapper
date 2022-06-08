@@ -3,6 +3,8 @@ import footerTemplate from "../components/footer.html";
 import descriptionTemplate from "../components/description.html";
 import Favicon from "../assets/favicon.ico";
 
+import { initNavigationPopup } from "./popup.js";
+
 const documentBody = document.querySelector("body");
 
 const parseHTML = (html) => {
@@ -41,11 +43,18 @@ class Wrapper {
     }
   };
 
-  #renderHeader = () =>
+  #renderHeader = () => {
+    console.log(parseHTML(headerTemplate));
+    const header = parseHTML(headerTemplate);
+    const examplesList = header.querySelector(".Popup__examplesList");
+    examplesList.innerHTML = "";
+    examplesList.appendChild(initNavigationPopup());
+    // header.querySelec
     documentBody.insertBefore(
-      parseHTML(headerTemplate),
-      documentBody.firstChild
+        header,
+        documentBody.firstChild
     );
+  };
 
   #renderDescription = () => {
     const { title, text } = this.#description;

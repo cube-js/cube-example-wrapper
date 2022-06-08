@@ -1,9 +1,11 @@
-import Wrapper from "./js/wrapper";
+import Wrapper from "./js/wrapper.js";
 
-import "./js/inject";
-import "./js/dom";
-import "./js/menu";
-import "./js/feedback";
-import "./js/tracking";
+import "./js/inject.js";
+import "./js/dom.js";
+import "./js/menu.js";
+import "./js/feedback.js";
+import "./js/tracking.js";
 
 export default Wrapper;
+
+window.CubeExampleWrapper = Wrapper;
