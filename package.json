@@ -1,10 +1,7 @@
 {
-  "name": "cube-example-wrapper",
-  "version": "1.0.26",
+  "name": "@cube-dev/example-wrapper",
+  "version": "1.0.0",
   "main": "./dist/main.js",
-  "repository": "git@github.com:cube-js/cube-examples-wrapper.git",
-  "author": "Carina Grishaeva <carina@gcube.dev>",
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
@@ -18,11 +15,11 @@
     "webpack-cli": "^4.9.2"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "lint": "eslint ./src/js/*",
-    "dev": "yarn lint && webpack --mode development --watch --progress",
     "build": "webpack --mode production"
   },
   "dependencies": {

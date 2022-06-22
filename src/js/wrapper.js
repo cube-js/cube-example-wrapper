@@ -71,13 +71,4 @@ class Wrapper {
   };
 }
 
-const createExampleWrapper = (description) => {
-  try {
-    const wrapper = new Wrapper(description);
-    wrapper.render();
-  } catch (err) {
-    throw new Error(err);
-  }
-};
-
-export default createExampleWrapper;
+export default Wrapper;

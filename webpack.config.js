@@ -11,14 +11,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "main.js",
-    library: "CubeExampleWrapper",
-    libraryTarget: "umd",
-    globalObject: "this",
-    umdNamedDefine: true,
-  },
-  watchOptions: {
-    aggregateTimeout: 600,
-    ignored: /node_modules/,
+    library: {
+      type: "commonjs-module",
+      export: "default",
+    },
   },
   plugins: [
     new CleanWebpackPlugin({
