@@ -31,24 +31,14 @@
     </button>
     <div class="Header__overlay" id="headerOverlay"></div>
     <nav class="Header__navigation" id="headerNavigation" aria-controls="toggleMenuVisibilityButton">
-        <div class="Header__linkList" id="menu">
-            <button class="Dropdown__button Header__link Button Button--outline Button--size-s load" id="menu-button"
-                aria-expanded="false" tabindex="0">
-                <span id="menu-button-text" class="Dropdown__text"></span>
-                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    class="Dropdown__arrow">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" />
-                </svg>
-            </button>
-            <div class="Popup">
-                <button id="close" class="Popup__closeButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
-                        <path d="m16 32 16-16M16 16l16 16" stroke="currentColor" stroke-width="1.6"/>
-                    </svg>
-                </button>
-                <ul class="Popup__examplesList"></ul>
-            </div>
-        </div>
+        <button class="Popup__OpenButton Header__link" id="navigation_popup_open_button"
+            aria-expanded="false" tabindex="0">
+            <span id="menu-button-text" class="">All Examples</span>
+            <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="Popup__OpenButton__arrow">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+        </button>
         <ul class="Header__linkList Header__linkList--actions">
             <li class="Header__linkItem">
                 <a href="https://slack.cube.dev/" class="Header__link">Discuss on Slack</a>

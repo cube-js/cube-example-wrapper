@@ -3,7 +3,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector("#header");
   const headerNavigation = document.querySelector("#headerNavigation");
   const headerOverlay = document.querySelector("#headerOverlay");
-  const minDesktopWidth = 1180;
 
   const toPX = (n) => (CSS && CSS.px ? CSS.px(n) : n + "px");
 
@@ -102,48 +101,13 @@ window.addEventListener("DOMContentLoaded", () => {
     hideNav();
   });
 
-  // dropdown menu functionality
-  const dropdown = document.querySelector("#menu");
-  const dropdownMenuBtn = document.querySelector("#menu-button");
-  const dropdownMenuList = document.querySelector("#menu-list");
-  dropdownMenuBtn.addEventListener("click", function () {
-    dropdownMenuList.scrollTop = 0;
-    if (this.getAttribute("aria-expanded") === "true") {
-      this.setAttribute("aria-expanded", false);
-      dropdown.removeAttribute("open");
-    } else {
-      this.setAttribute("aria-expanded", true);
-      dropdown.setAttribute("open", true);
-    }
-  });
+  const popupElem = document.querySelector(".Popup");
 
   // close dropdown when click outside
   window.addEventListener("click", (e) => {
-    if (!dropdownMenuBtn.contains(e.target)) {
-      dropdownMenuBtn.setAttribute("aria-expanded", false);
-      dropdown.removeAttribute("open");
-    }
-  });
-
-  window.addEventListener("resize", function () {
-    if (this.innerWidth >= minDesktopWidth) {
-      // hide nav on window resize properly
-      unLockScroll();
-      header.classList.remove("Header--open");
-      header.classList.remove("Header--hide");
-      dropdownMenuBtn.setAttribute("aria-expanded", false);
-      navToggleBtn.setAttribute("aria-expanded", false);
-      navToggleBtn.setAttribute("aria-label", "Open menu");
-
-      // fix menu max-height
-      // if there is more then 8 menu items
-      // set such a height so that the user understands
-      // that it is possible to scroll down
-      if (dropdownMenuList.childNodes.length > 7) {
-        dropdownMenuList.classList.add("overflow");
-      }
-    } else {
-      dropdownMenuList.classList.remove("overflow");
+    if (!popupElem.contains(e.target) && popupElem.classList.contains("Popup--open")) {
+      popupElem.classList.toggle("Popup--open");
+      document.body.classList.toggle("popupIsOpen");
     }
   });
 });
