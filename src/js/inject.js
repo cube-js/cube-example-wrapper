@@ -3,7 +3,7 @@
   and DataDog Browser Logs 
 */
 
-import wrapperStyle from "../style.css";
+import wrapperStyle from "../styles/style.css";
 
 // inject DD Browser Logs
 (function (scriptId) {

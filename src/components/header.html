@@ -21,6 +21,14 @@
             </svg>
         </a>
     </div>
+    <button class="Popup__OpenButton" id="navigation_popup_open_button"
+            aria-expanded="false" tabindex="0">
+        <span id="menu-button-text" class="">All Examples</span>
+        <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg"
+             class="Popup__OpenButton__arrow">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" />
+        </svg>
+    </button>
     <button aria-label="ariaLabelMenuButton" id="toggleNavVisibilityButton" aria-expanded="false"
         class="Header__openButton">
         <span class="Header__openMenuIcon">
@@ -31,14 +39,6 @@
     </button>
     <div class="Header__overlay" id="headerOverlay"></div>
     <nav class="Header__navigation" id="headerNavigation" aria-controls="toggleMenuVisibilityButton">
-        <button class="Popup__OpenButton Header__link" id="navigation_popup_open_button"
-            aria-expanded="false" tabindex="0">
-            <span id="menu-button-text" class="">All Examples</span>
-            <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg"
-                class="Popup__OpenButton__arrow">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" />
-            </svg>
-        </button>
         <ul class="Header__linkList Header__linkList--actions">
             <li class="Header__linkItem">
                 <a href="https://slack.cube.dev/" class="Header__link">Discuss on Slack</a>
