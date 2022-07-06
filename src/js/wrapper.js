@@ -80,9 +80,9 @@ class Wrapper {
     this.#setTitle();
     this.#setFavicon();
     this.#renderHeader();
-    this.#renderNavigationPopup();
     this.#renderDescription();
     this.#renderFooter();
+    this.#renderNavigationPopup();
   };
 }
 
