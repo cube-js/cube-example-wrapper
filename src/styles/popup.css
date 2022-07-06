@@ -17,7 +17,7 @@ body {
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
 
-    --time: 1s;
+    --time: 0.7s;
 }
 
 .Popup__OpenButton {
@@ -58,6 +58,7 @@ body::after {
     background-color: rgba(20, 20, 70, 0.12);
     position: absolute;
     inset: 0;
+    /*content: '';*/
     opacity: 0;
     pointer-events: none;
     animation-name: overlayClose;
@@ -80,7 +81,7 @@ body.popupWasOpened::after {
         opacity: 0;
     }
     100% {
-        content: none;
+        /*content: none;*/
         opacity: 0;
     }
 }
