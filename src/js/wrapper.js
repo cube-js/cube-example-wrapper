@@ -54,11 +54,14 @@ class Wrapper {
 
   #renderNavigationPopup = () => {
     const popup = parseHTML(popupTemplate);
-    const examplesList = popup.querySelector(".Popup__examplesList");
-    examplesList.appendChild(initNavigationPopup());
     documentBody.appendChild(
         popup,
     );
+  };
+
+  #renderExamplesList = async () => {
+    const examplesList = documentBody.querySelector(".Popup__examplesList");
+    examplesList.appendChild(await initNavigationPopup());
   };
 
   #renderDescription = () => {
@@ -83,6 +86,7 @@ class Wrapper {
     this.#renderDescription();
     this.#renderFooter();
     this.#renderNavigationPopup();
+    this.#renderExamplesList();
   };
 }
 

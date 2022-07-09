@@ -112,8 +112,6 @@ body.popupIsOpen::after {
     z-index: 1;
 
     position: absolute;
-    top: 50%;
-    left: 50%;
     inset: 88px 126px;
 
     transform: scale(0.8);
@@ -157,6 +155,11 @@ body.popupIsOpen::after {
     margin: 0;
 }
 
+.Popup__examplesList {
+    overflow: scroll;
+    max-height: 100%;
+}
+
 .Popup__list {
     row-gap: 24px;
     column-gap: 32px;
@@ -167,7 +170,6 @@ body.popupIsOpen::after {
     max-height: 100%;
     box-sizing: border-box;
 }
-
 
 .Popup__exampleItem {
     display: flex;
@@ -183,6 +185,9 @@ body.popupIsOpen::after {
     color: #141446;
     text-decoration: none;
     transition: color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Popup__exampleLink:hover {
@@ -191,7 +196,33 @@ body.popupIsOpen::after {
 
 .Popup__exampleIcon {
     height: 24px;
-    width: 24px;
+    min-width: 24px;
     overflow: hidden;
     margin-left: -4px;
+}
+
+@media (max-width: 800px) {
+    .Popup {
+        inset: 44px 63px;
+    }
+    .Popup__list {
+        padding: 38px 50px;
+    }
+}
+
+@media (max-width: 500px) {
+    .Popup {
+        inset: 44px 43px;
+    }
+    .Popup__list {
+        padding: 28px 40px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .Popup__OpenButton__text {
+        display: none;
+    }
+    /*.Popup__list li {*/
+    /*    max-width: 100%;*/
+    /*    overflow: hidden;*/
+    /*}*/
 }
